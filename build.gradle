@@ -32,11 +32,10 @@ dependencies {
     implementation 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-shim:2.+'
     implementation 'org.hyperledger.fabric:fabric-gateway-java:2.1.1'
     implementation 'org.json:json:+'
-    implementation 'com.google.guava:guava:29.0-jre'
-    implementation 'io.grpc:grpc-okhttp:1.40.0' // gRPC OkHttp 客户端
-    implementation 'io.grpc:grpc-protobuf:1.40.0' // gRPC Protobuf
-    implementation 'io.grpc:grpc-stub:1.40.0' // gRPC Stub
-    implementation 'io.grpc:grpc-netty-shaded:1.40.0' // 如果你还需要 gRPC Netty 客户端
+    //implementation 'com.google.guava:guava:29.0-jre'
+    compileOnly 'io.grpc:grpc-api:1.59.0'
+    runtimeOnly 'io.grpc:grpc-netty-shaded:1.59.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 

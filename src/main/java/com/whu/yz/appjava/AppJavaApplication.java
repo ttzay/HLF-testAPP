@@ -1,8 +1,5 @@
 package com.whu.yz.appjava;
 
-import org.hyperledger.fabric.client.Contract;
-import org.hyperledger.fabric.client.Gateway;
-import org.hyperledger.fabric.client.Network;
 import org.hyperledger.fabric.gateway.Wallet;
 import org.hyperledger.fabric.gateway.Wallets;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +19,7 @@ public class AppJavaApplication {
         Wallet wallet = Wallets.newFileSystemWallet(walletPath);
 
         // 检查用户是否已在钱包中
-        if (wallet.get("javaAppUser") == null) {
+        if (wallet.get("javaUser") == null) {
             System.out.println("请先注册用户");
             // EnrollAdmin.main(new String[0]);
             RegisterUser.main(new String[0]);
@@ -31,14 +28,14 @@ public class AppJavaApplication {
         
 
         // 创建Gateway连接
-        Gateway.Builder builder = GRPcConnect.creatChannel();
+        org.hyperledger.fabric.gateway.Gateway.Builder builder = GRPcConnect.creatChannel();
         // 使用Gateway连接
-        try(Gateway gateway = builder.connect()) {
+        try(org.hyperledger.fabric.gateway.Gateway gateway = builder.connect()) {
             // 获取网络和合约引用
             // todo 改NetworkName
-            Network network = gateway.getNetwork("testchannel");
+            org.hyperledger.fabric.gateway.Network network = gateway.getNetwork("testchannel");
             // todo 改ChaincodeName,
-            Contract contract = network.getContract("basic");
+            org.hyperledger.fabric.gateway.Contract contract = network.getContract("basic");
 
             // 资产转移逻辑
             byte[] result;
